@@ -1,0 +1,61 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+li { 
+    list-style-type: none; 
+}
+
+a { 
+    text-decoration: none;
+    color: black;
+}
+
+/* --------------------------------------- header --------------------------------------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+}
+
+.header .side-menu .side-menu__top--sm { display: none; }
+
+.header h1 {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.header .side-menu {
+    display: inline-block;
+}
+
+.header .gnb__list li { 
+    float: left;
+    padding: 0 24px;
+    font-weight: bold;
+}
+
+/* --------------------------------------- main --------------------------------------- */
+.main-banner {
+    position: relative;
+}
+
+.main-banner .swiper-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-banner .swiper-wrapper .swiper-slide {
+    float: left;
+}
+
+.main-banner__visual img {
+    width: 100%;
+}
+

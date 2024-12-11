@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSIDE NHN 원본.html</title>
+</head>
+<!-- [D] 모바일, 테블릿에 해당하는 뷰포트의 경우, .side-menu 활성화 시 body에 is--gnb-active, is--hidden 클래스 추가(데스크탑에 해당하는 뷰포트의 경우, is--gnb-active, is--hidden 클래스 제거) -->
+<!-- [D] 모바일, 테블릿에 해당하는 뷰포트의 경우, .layer-search 활성화 시 body에 is--search-active, is--hidden 클래스 추가 -->
+<!-- [D] 스크롤 방향에 따라 is--scroll-down, is--scroll-up 클래스 추가 -->
+<body>
+    <div class="page-overlay-transition">
+        <i class="icon__logo--white">INSIDE NHN</i>
+    </div>
+    <script>
+        function moveBannerPage(bannerUrl) {
+        window.location.href = bannerUrl;
+      }
+    </script>
+    <div id="skip-navi" class="skip-navi">
+        <a class="skip-navi__item" href="#container">본문 바로가기</a>
+    </div>
+    <div class="wrap">
+        <header class="header">
+            <div class="header__inner">
+                <!-- <script></script> -->
+                <h1 class="logo">
+                    <a href="javascript:void(0)" onclick="loadContent('/')"> INSIDE NHN </a>
+                </h1>
+                <div class="side-menu">
+                    <div class="side-menu__top--sm">
+                        <h2 class="logo">
+                            <a href="javascript:void(0)" onclick="loadContent('/')"> INSIDE NHN </a>
+                        </h2>
+                        <!-- [D] 클릭 시 .side-menu 활성화/비활성화 -->
+                        <button type="button" class="button__icon-only--md button__sidemenu-control">메뉴</button>
+                    </div>
+                    <nav class="gnb">
+                        <ul class="gnb__list">
+                            <li class="gnb__item is-active">
+                                <a href="javascript:void(0)" onclick="loadContent('/peoplenculture')">사람&문화</a>
+                            </li>
+                            <li class="gnb__item is-active">
+                                <a href="javascript:void(0)" onclick="loadContent('/tech')">기술</a>
+                            </li>
+                            <li class="gnb__item is-active">
+                                <a href="javascript:void(0)" onclick="loadContent('/service')">서비스</a>
+                            </li>
+                            <li class="gnb__item is-active">
+                                <a href="javascript:void(0)" onclick="loadContent('/corp')">기업</a>
+                            </li>
+                            <li class="gnb__item is-active">
+                                <a href="javascript:void(0)" onclick="loadContent('/news')">뉴스</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- 우측 상단 롤링 배너, 구현하기 어려워서 대략 적고 주석처리 -->
+                    <!-- <div class="rolling-banner">
+                        <div class="rolling-banner__inner swiper swiper-initialized swiper-vertical swiper-pointer-events swiper-backface-hidden">
+                            <ul class="rolling-banner__list swiper-wrapper" id="swiper-wrapper-b2592eaa2ece6d66" aria-live="off">
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">Weaving New Play. NHN</span>
+                                    </a>
+                                </li>
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">우리의 연결로 만드는 새로운 내일</span>
+                                    </a>
+                                </li>
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">Weaving New Play. NHN</span>
+                                    </a>
+                                </li>
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">우리의 연결로 만드는 새로운 내일</span>
+                                    </a>
+                                </li>
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">Weaving New Play. NHN</span>
+                                    </a>
+                                </li>
+                                <li class="rolling-banner__item swiper-slide dupicate swiper">
+                                    <a href="javascript:void(0)" onclick="loadContent('/company')">
+                                        <span class="rolling-banner__txt">우리의 연결로 만드는 새로운 내일</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="layer-search">
+                    <script>
+                        $(document).ready(function() {
+                            $('#searchForm').submit(function(event) {
+                                event.preventDefault();
+
+                                const searchText = $('#searchInput').val();
+                                const url = '/search?keyword=' + encodeURIComponent(searchText);
+
+                                window.location.href = url;
+                            })
+                        });
+
+                        function searchByHashtag(element) {
+                            setUrl('/');
+
+                            let url = '/search?keyword=' + encodeURIComponent(element.textContent);
+
+                            window.location.href = url;
+                        }
+
+                        document.querySelectorAll('.hash').forEach(function(element) {
+                            element.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            searchByHashtag(element);
+                            });
+                        });
+                    </script>
+                    <div class="layer-search__inner">
+                        <div class="layer-search__content">
+                            <form role="search" id="searchForm">
+                                <div class="search-inputs">
+                                    <!-- [D] 타이핑 할 때 .button__reset style="--layer-search-button-clip-path: 0% 0% 0% 0%" 추가되며
+                                    타이핑된 텍스트 없을 때 style="--layer-search-button-clip-path: 100% 0% 0% 0%" 추가 -->
+                                    <input type="search" id="searchinput" placeholder="검색어를 입력하세요" autocomplete="off">
+                                    <input type="reset" class="button__icon-only--xsm button__reset">
+                                    <input type="submit" id="searchsubmit" class="button__icon-only--md button__search">
+                                </div>
+                            </form>
+                            <div class="hashes">
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">NHN</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">소셜비즈</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">워크인</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">두레이</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">ESG</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">다키스트데이즈</a>
+                                <a href="javascript:void(0)" class="hash" onclick="searchByHashtag(this)">클라우드</a>
+                            </div>
+                        </div>
+                        <!-- [D] 클릭 시 .layer-search 비활성화, 모바일에서 display: none -->
+                        <button type="button" class="button__search-close">
+                            <i class="button__icon-only--md icon__search-close--black">닫기</i>
+                        </button>
+                    </div>
+                    ::after
+                </div>
+                <!-- [D] 클릭 시 .layer-search 활성화/모바일에서 비활성화 -->
+                <button type="button" class="button__icon-only--md button__search-control">검색</button>
+                <!-- [D] 클릭 시 .side-menu 활성화/비활성화 -->
+                <button type="button" class="button__icon-only--md button__sidemenu-control">메뉴</button>
+            </div>
+        </header>
+        <main id="container" class="container">
+            <div class="sec-content">
+                <!-- [D] 메인 배너 -->
+                <div class="main-banner swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                    <div class="swiper-wrapper" id="swiper-wrapper-1153652b6adefe64" aria-live="polite" style="transform: translate3d(-1519px, 0px, 0px); transition-duration: 0ms">
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" onclick="moveBannerpage('http://inside.nhn.com/corp/227')" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1519px">
+                            <picture class="main-banner__visual large-content" style="--placeholder: url(/brand_/bigBanner/2024/PC/202409121536581.jpg)">
+                                ::before
+                                <!-- [D] mobile, tablet, pc용 이미지 삽입 -->
+                                <source media="(max-width:673px)" srcset="/brand_/bigBanner/2024/PC/202411041453571.jpg">
+                                <source media="(max-width:1199px)" srcset="/brand_/bigBanner/2024/PC/202411041453571.jpg">
+                                <img draggable="false" fetchpriority="high" loading="eager" decoding="async" src="/brand_/bigBanner/2024/PC/202411041453571.jpg" alt=" 'The NEXT Dooray' <br>기자간담회 현장 스케치">
+                            </picture>
+                            <div class="main-banner__content">
+                                <h2 class="main-banner__tit">
+                                    " 'The NEXT Dooray' "
+                                    <br>
+                                    "기자간담회 현장 스케치"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-active" onclick="moveBannerPage('https://inside.nhn.com/service/239')" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1519px;">
+                            <picture class="main-banner__visual large-content" style="--placeholder: url(/brand_/bigBanner/2024/PC/202411121512401.jpg)">
+                                ::before
+                                <!-- [D] mobile, tablet, pc용 이미지 삽입 -->
+                                <source media="(max-width:673px)" srcset="/brand_/bigBanner/2024/PC/202411121512401.jpg">
+                                <source media="(max-width:1199px)" srcset="/brand_/bigBanner/2024/PC/202411121512401.jpg">
+                                <img draggable="false" fetchpriority="high" loading="eager" decoding="async" src="/brand_/bigBanner/2024/PC/202411121512401.jpg" alt= "mz세대를 사로잡는 <br>인스타그램 마케팅 <br>소셜비즈가 해답이죠">
+                            </picture>
+                            <div class="main-banner__content" style="opacity: 1; transform: translate(0px, 0px);">
+                                <h2 class="main-banner__tit">
+                                    ""MZ세대를 사로잡는"
+                                    <br>
+                                    "인스타그램 마케팅"
+                                    <br>
+                                    "소셜비즈가 해답이죠""
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-next" onclick="moveBannerPage('https://inside.nhn.com/peoplenculture/238')" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 1519px;">
+                            <picture class="main-banner__visual large-content" style="--placeholder: url(/brand_/bigBanner/2024/PC/202411121508451.jpg)">
+                                <!-- [D] mobile, tablet, pc용 이미지 삽입 -->
+                                <source media="(max-width:673px)" srcset="/brand_/bigBanner/2024/PC/202411121508451.jpg">
+                                <source media="(max-width:1199px)" srcset="/brand_/bigBanner/2024/PC/202411121508451.jpg">
+                                <img draggable="false" fetchpriority="high" loading="eager" decoding="async" src="/brand_/bigBanner/2024/PC/202411121508451.jpg" alt="NHN아카데미 웰커밍 데이<br>현장 스케치!📸">
+                            </picture>
+                            <div class="main-banner__content">
+                                <h2 class="main-banner__tit">
+                                    "NHN아카데미 웰커밍 데이"
+                                    <br>
+                                    "현장 스케치!📸"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" onclick="moveBannerPage('https://inside.nhn.com/service/235')" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1519px;">
+                            <picture class="main-banner__visual large-content" style="--placeholder: url(/brand_/bigBanner/2024/PC/202411041453571.jpg)">
+                                ::before
+                                <!-- [D] mobile, tablet, pc용 이미지 삽입 -->
+                                <source media="(max-width:673px)" srcset="/brand_/bigBanner/2024/PC/202411041453571.jpg">
+                                <source media="(max-width:1199px)" srcset="/brand_/bigBanner/2024/PC/202411041453571.jpg">
+                                <img draggable="false" fetchpriority="high" loading="eager" decoding="async" src="/brand_/bigBanner/2024/PC/202411041453571.jpg" alt=" 'The NEXT Dooray' <br>기자간담회 현장 스케치">
+                            </picture>
+                            <div class="main-banner__content">
+                                <h2 class="main-banner__tit">
+                                    " 'The NEXT Dooray' "
+                                    <br>
+                                    "기자간담회 현장 스케치"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" onclick="moveBannerPage('https://inside.nhn.com/service/239')" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1519px;">
+                            <picture class="main-banner__visual large-content" style="--placeholder: url(/brand_/bigBanner/2024/PC/202411121512401.jpg)">
+                                <!-- [D] mobile, tablet, pc용 이미지 삽입 -->
+                                <source media="(max-width:673px)" srcset="/brand_/bigBanner/2024/PC/202411121512401.jpg">
+                                <source media="(max-width:1199px)" srcset="/brand_/bigBanner/2024/PC/202411121512401.jpg">
+                                <img draggable="false" fetchpriority="high" loading="eager" decoding="async" src="/brand_/bigBanner/2024/PC/202411121512401.jpg" alt="mz세대를 사로잡는 <br>인스타그램 마케팅 <br>소셜비즈가 해답이죠">
+                            </picture>
+                            <div class="main-banner__content" style="opacity: 1; transform: translate(0px, 0px);">
+                                <h2 class="main-banner__tit">
+                                    ""MZ세대를 사로잡는
+                                    <br>
+                                    "인스타그램 마케팅"
+                                    <br>
+                                    "소셜비즈가 해답이죠""
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-banner__control">
+                        <button type="button" class="button__icon-only--md icon__chev-prev--white" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-884bb88adf080e31">이전</button>
+                        <div class="main-banner__pagination swiper-pagination-fraction swiper-pagination-horizontal">
+                            <span class="swiper-pagination-current">1</span>
+                            " / "
+                            <span class="swiper-pagination-total">3</span>
+                        </div>
+                        <button type="button" class="button__icon-only--md icon__chev-next--white" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-884bb88adf080e31">다음</button>
+                    </div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                </div>
+                <!-- // [D] 메인 배너 -->
+                <!-- [D] 추천 아티클 -->
+                <section id="main-article" class="sec main-sec-article">
+                    <div class="sec__head" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                        <h3 class="sec__title">추천 아티클</h3>
+                    </div>
+                    <div class="sec__body">
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/239">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">기술</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202411121456131.jpg" alt=" MZ세대를 사로잡는 인스타그램 마케팅, 소셜비즈가 해답이죠” 소셜비즈 미디어 스터디 현장  ">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">“MZ세대를 사로잡는 인스타그램 마케팅, 소셜비즈가 해답이죠” 소셜비즈 미디어 스터디 현장</strong>
+                                    <span class="card__desc">NHN</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/peoplenculture/238">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">사내행사</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202411081458081.jpg" alt="👨‍🎓NHN아카데미👩‍🎓 웰커밍 데이, 현장 스케치!📸">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">👨‍🎓NHN아카데미👩‍🎓 웰커밍 데이, 현장 스케치!📸</strong>
+                                    <span class="card__desc">NHN ACADEMY</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/236">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">기술</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202411051521121.jpg" alt="[두레이AI②] 협업에 날개 달아주는 두레이AI 써보니 ">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">[두레이AI②] 협업에 날개 달아주는 두레이AI 써보니</strong>
+                                    <span class="card__desc">NHN DOORAY</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/235">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">기술</span></div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202410311609301.jpg" alt="[두레이AI①] ‘The NEXT Dooray’ 기자간담회 현장 스케치">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">[두레이AI①] ‘The NEXT Dooray’ 기자간담회 현장 스케치</strong>
+                                    <span class="card__desc">NHN DOORAY</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/234">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">콘텐츠</span>
+                                        <span class="card__label">인터뷰</span></div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202410181723071.jpg" alt="위즈덤하우스 마케터와 기획자가 알려주는 베스트셀러의 탄생">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">위즈덤하우스 마케터와 기획자가 알려주는 베스트셀러의 탄생</strong>
+                                    <span class="card__desc">WISDOM HOUSE</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/tech/233">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">클라우드</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202410161531001.jpg" alt="[클라우드 용어집] DaaS/VDI란?(개념, 차이, 장/단점)">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">[클라우드 용어집] DaaS/VDI란?(개념, 차이, 장/단점)</strong>
+                                    <span class="card__desc">NHN Cloud</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/231">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">커머스</span>
+                                        <span class="card__label">인터뷰</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202410081705001.jpg" alt="24시간 안정적인 인프라를 제공하는 SRE 파트 오태기 과장, 박길장 님의 이야기">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">24시간 안정적인 인프라를 제공하는 SRE 파트 오태기 과장, 박길장 님의 이야기</strong>
+                                    <span class="card__desc">NHN COMMERCE</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/service/230">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">콘텐츠</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202409301524551.png" alt="뮤지컬과 여행의 만남! [사의찬미]의 배경지로 떠나는 여행">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">뮤지컬과 여행의 만남! [사의찬미]의 배경지로 떠나는 여행</strong>
+                                    <span class="card__desc">NHN DOCTORTOUR</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/peoplenculture/229">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">사내행사</span>    
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202409271750491.png" alt="우리들의 도둑맞은 어휘력을 찾는 필사적 여정">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">우리들의 도둑맞은 어휘력을 찾는 필사적 여정</strong>
+                                    <span class="card__desc">WISDOM HOUSE</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card card-article" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                            <a href="/corp/227">
+                                <div class="card-visual__wrapper">
+                                    <div class="card__labels">
+                                        <span class="card__label">브랜딩</span>
+                                    </div>
+                                    <div class="card__img-box">
+                                        <!-- [D] 이미지 lazy loading시 src에 placeholder 이미지, data-src에 이미지 추가 -->
+                                        <img draggable="false" decoding="async" src="/brand_/storyboard/2024/202409121540541.jpg" alt="[리브랜딩 스토리 3] 가장 NHN다운 모습의 기업사이트">
+                                    </div>
+                                </div>
+                                <div class="card-content__wrapper">
+                                    <strong class="card__tit">[리브랜딩 스토리 3] 가장 NHN다운 모습의 기업사이트</strong>
+                                    <span class="card__desc">NHN</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <!-- // [D] 추천 아티클 -->
+                <!-- 새로운 내일을 만드는 우리들의 이야기 -->
+                <section id="main-story" class="sec main-sec-story">
+                    <div class="sec__head" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                        <h3 class="sec__title">
+                            "새로운 내일을 만드는"
+                            <br class="d-block--sm-only">
+                            "우리들의 이야기"
+                        </h3>
+                        <a href="https://www.youtube.com/@NHNofficial" target="_blank" class="button__text-icon--md icon__outlink--black hover__underline--black">
+                            "공식유튜브"
+                            ::after
+                        </a>
+                    </div>
+                    <div class="sec__body" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                        <div class="story__content swiper swiper-fade swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-e4bd31a815c0a5b3" aria-live="polite" style="transition-duration: 0ms;"><div class="card swiper-slide swiper-slide-duplicate" data-youtubeid="EfqKlshvcas?si=zQXIozo3QqGMKrAA?si=9LyX-tx_VCdJof50" data-swiper-slide-index="3" role="group" aria-label="4 / 5" style="width: 1459px; transition-duration: 0ms; opacity: 0; transform: translate3d(0px, 0px, 0px);">
+                                <div class="card__youtube">
+                                    <div class="card-visual__wrapper">
+                                        <div class="card__youtube-box">
+                                            <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                            <img class="swiper-lazy" draggable="false" src="/connect/img/placeholder.png" data-srcset="/brand_/mainYoutube/2024/202408011447041.jpg" alt="[워크인NHN] 일본 인기 모바일 게임 #콤파스 디자이너들이 일하는 방법">
+                                            <button type="button" class="button__icon-only button__card-control">
+                                                ::before
+                                                "재생"
+                                                ::after
+                                            </button>
+                                            <!-- [D]활성화 시 iframe(loop모드 사용으로 동적 추가되는 요소)에 is--active 클래스 추가 -->
+                                        </div>
+                                    </div>
+                                    <div class="card-content__wrapper">
+                                        <a href="javascript:void(0)">
+                                            <strong class="card__tit">[워크인NHN] 일본 인기 모바일 게임 #콤파스 디자이너들이 일하는 방법</strong>
+                                            <span class="card__desc">
+                                                "NHN PlayArt의 직원들은 어떻게 일할까? 일본의 대표 모바일 대전게임 #콤파스(#COMPASS)! 2016년 출시 이후 매력적인 캐릭터들과 우수한 게임성으로 오랫동안 많은 일본 게이머들의 사랑을 받고 있습니다.  #콤파스의 디자인 업무를 맡고 있는 NHN PlayArt 임직원들의 일과를 함께 시청하시죠!"
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card swiper-slide swiper-slide-duplicate swiper-slide-prev" data-youtubeid="FlwsFDdIxko?si=RX-ejAELNCOUTeqS?si=9LyX-tx_VCdJof50" data-swiper-slide-index="4" role="group" aria-label="5 / 5" style="width: 1459px; transition-duration: 0ms; opacity: 0; transform: translate3d(-1459px, 0px, 0px);">
+                                <div class="card__youtube">
+                                    <div class="card-visual__wrapper">
+                                        <div class="card__youtube-box">
+                                            <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                            <img class="swiper-lazy" draggable="false" src="/connect/img/placeholder.png" data-srcset="/brand_/mainYoutube/2024/202408011447171.jpg" alt="[워크인NHN] 22년 만의 리마스터! NHN 한게임 PC 포커 '리뉴얼 프로젝트' 비하인드">
+                                            <button type="button" class="button__icon-only button__card-control">
+                                                ::before
+                                                "재생"
+                                                ::after
+                                            </button>
+                                            <!-- [D]활성화 시 iframe(loop모드 사용으로 동적 추가되는 요소)에 is--active 클래스 추가 -->
+                                        </div>
+                                    </div>
+                                    <div class="card-content__wrapper">
+                                        <a href="javascript:void(0)">
+                                            <strong class="card__tit">[워크인NHN] 22년 만의 리마스터! NHN 한게임 PC 포커 '리뉴얼 프로젝트' 비하인드</strong>
+                                            <span class="card__desc">
+                                                "한게임 PC 포커가 새롭게 리뉴얼됐습니다. 20년 간 축적한 게임 노하우는 유지하면서, 이용자들이 더 편하고 재미있게 게임을 즐길 수 있도록 대대적인 개편을 진행한 것인데요.  무려 100여 명의 인원이 3년이라는 긴 시간동안 준비한 이번 리마스터링. TF로 참여한 핵심 멤버 4분을 모시고 이번 리뉴얼 과정과 그 안에 담긴 치열한 고민들을 살펴봤습니다."
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="card swiper-slide swiper-slide-visible swiper-slide-active" data-youtubeid="P-E5qbo31yY?si=3BGTIU0QhF97PH8X?si=9LyX-tx_VCdJof50" data-swiper-slide-index="0" role="group" aria-label="1 / 5" style="width: 1459px; transition-duration: 0ms; opacity: 1; transform: translate3d(-2918px, 0px, 0px);">
+                                <div class="card__youtube">
+                                    <div class="card-visual__wrapper">
+                                        <div class="card__youtube-box">
+                                            <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                            <img class="swiper-lazy swiper-lazy-loaded" draggable="false" src="/connect/img/placeholder.png" alt="[워크인NHN] 대한민국 AI 경쟁력, 국가 AI데이터센터가 책임진다! IDC 엔지니어의 하루" srcset="/brand_/mainYoutube/2024/202411051732261.jpg">
+                                            <button type="button" class="button__icon-only button__card-control">
+                                                ::before
+                                                "재생"
+                                                ::after
+                                            </button>
+                                            <!-- [D]활성화 시 iframe(loop모드 사용으로 동적 추가되는 요소)에 is--active 클래스 추가 -->
+                                            <!-- <iframe id="player-0-2" class="card__youtube-iframe" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="[워크인NHN] 대한민국 AI 경쟁력, 국가 AI데이터센터가 책임진다! IDC 엔지니어의 하루" width="315" height="560" src="https://www.youtube.com/embed/P-E5qbo31yY?si=3BGTIU0QhF97PH8X?si=9LyX-tx_VCdJof50?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;playsinline=0&amp;rel=0&amp;origin=https%3A%2F%2Finside.nhn.com&amp;widgetid=1"></iframe> -->
+                                            <!-- <!DOCTYPE html> 부분이 다시 나와서 뭔지 모르겠어서 중간 생략 -->
+                                        </div>    
+                                    </div>
+                                    <div class="card-content__wrapper" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <a href="javascript:void(0)">
+                                            <strong class="card__tit">[워크인NHN] 대한민국 AI 경쟁력, 국가 AI데이터센터가 책임진다! IDC 엔지니어의 하루</strong>
+                                            <span class="card__desc">국가 AI데이터센터 IDC엔지니어는 어떻게 일할까? 끊김없는 운영을 지원하는 광주AI센터운영파트 정현중 선임님의 하루를 따라가보았습니다.</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card swiper-slide swiper-slide-next" data-youtubeid="wPOYnjX5BE0?si=kT7MralPuUc540AJ?si=9LyX-tx_VCdJof50" data-swiper-slide-index="1" role="group" aria-label="2 / 5" style="width: 1459px; transition-duration: 0ms; opacity: 0; transform: translate3d(-4377px, 0px, 0px);">
+                                <div class="card__youtube">
+                                    <div class="card-visual__wrapper">
+                                        <div class="card__youtube-box">
+                                            <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                            <img class="swiper-lazy" draggable="false" src="/connect/img/placeholder.png" data-srcset="/brand_/mainYoutube/2024/202408011446391.jpg" alt="[워크인NHN] 놀러오세요, 플레이뮤지엄에! NHN 컬처팀 조직문화 담당자의 하루">
+                                            <button type="button" class="button__icon-only button__card-control">
+                                                ::before
+                                                "재생"
+                                                ::after
+                                            </button>
+                                            <!-- [D]활성화 시 iframe(loop모드 사용으로 동적 추가되는 요소)에 is--active 클래스 추가 -->
+                                        </div>
+                                    </div>
+                                    <div class="card-content__wrapper">
+                                        <a href="javascript:void(0)">
+                                            <strong class="card__tit">[워크인NHN] 놀러오세요, 플레이뮤지엄에! NHN 컬처팀 조직문화 담당자의 하루</strong>
+                                            <span class="card__desc">NHN 컬처팀은 어떻게 일할까? NHN의 대표 임직원 가족 초청행사 WE! FAMILY 담당자 컬처팀 권해정 팀장의 하루를 따라가보았습니다.</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card swiper-slide" data-youtubeid="V5fF6Ths5gM?si=Jkk0uKVzeALcu-Zm?si=9LyX-tx_VCdJof50" data-swiper-slide-index="2" role="group" aria-label="3 / 5" style="width: 1459px; transition-duration: 0ms; opacity: 0; transform: translate3d(-5836px, 0px, 0px);">
+                                <div class="card__youtube">
+                                    <div class="card-visual__wrapper">
+                                        <div class="card__youtube-box">
+                                            <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                            <img class="swiper-lazy" draggable="false" src="/connect/img/placeholder.png" data-srcset="/brand_/mainYoutube/2024/202408011446501.jpg" alt="[워크인NHN] FashionGo is bucking the norm! 미국 패션고 서비스 기획자의 글로벌한 하루">
+                                            <button type="button" class="button__icon-only button__card-control">
+                                                ::before
+                                                "재생"
+                                                ::after
+                                            </button>
+                                            <!-- [D]활성화 시 iframe(loop모드 사용으로 동적 추가되는 요소)에 is--active 클래스 추가 -->
+                                        </div>
+                                    </div>
+                                    <div class="card-content__wrapper">
+                                        <a href="javascript:void(0)">
+                                            <strong class="card__tit">[워크인NHN] FashionGo is bucking the norm! 미국 패션고 서비스 기획자의 글로벌한 하루</strong>
+                                            <span class="card__desc">
+                                                "NHN 패션고코리아 서비스기획자는 어떻게 일할까?  FashionGo is bucking the norm. 패션고는 식상함을 거부합니다 - WWD  미국 1위 B2B 패션플랫폼 #패션고(Fashiongo)의 서비스기획 업무를 맡고 있는 신태하 팀장의 일과를 함께 보시죠."
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // [D] 새로운 내일을 만드는 우리들의 이야기 -->
+                <!-- [D] 최근 뉴스 -->
+                <section id="main-news" class="sec main-sec-news">
+                    <div class="sec__head" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                        <h3 class="sec__title">최근 뉴스</h3>
+                        <a href="/news" class="button__text-icon--md icon__arr-next--black hover__underline--black">
+                            "전체보기"
+                            ::after
+                        </a>
+                    </div>
+                    <div class="sec__body">
+                        <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-f5ebdebc869a5ae4" aria-live="polite">
+                                <div class="card swiper-slide swiper-slide-active" role="group" aria-label="1 / 5" style="width: 348.955px; margin-right: 24px;">
+                                    <a href="/news/671" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <div class="card-visual__wrapper">
+                                            <div class="card__labels">
+                                                <span class="card__label">기업</span>
+                                            </div>
+                                            <div class="card__img-box">
+                                                <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                                <img class="swiper-lazy swiper-lazy-loaded" draggable="false" src="/connect/img/placeholder.png" alt="NHN, 2024년 3분기 경영실적 발표" srcset="/ko_/pr/boardImage/2024/202411120816101.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="card-content__wrapper">
+                                            <strong class="card__tit">NHN, 2024년 3분기 경영실적 발표</strong>
+                                            <span class="card__desc"></span>
+                                        </div>  
+                                    </a>  
+                                </div>
+                                <div class="card swiper-slide swiper-slide-next" role="group" aria-label="2 / 5" style="width: 348.955px; margin-right: 24px;">
+                                    <a href="/news/670" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <div class="card-visual__wrapper">
+                                            <div class="card__labels">
+                                                <span class="card__label">게임</span>
+                                            </div>
+                                            <div class="card__img-box">
+                                                <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                                <img class="swiper-lazy swiper-lazy-loaded" draggable="false" src="/connect/img/placeholder.png" alt="NHN, 서브컬쳐 신작 게임 ‘어비스디아’ 공식 타이틀 공개  " srcset="/ko_/pr/boardImage/2024/202411111346091.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="card-content__wrapper">
+                                            <strong class="card__tit">NHN, 서브컬쳐 신작 게임 ‘어비스디아’ 공식 타이틀 공개</strong>
+                                            <span class="card__desc"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card swiper-slide" role="group" aria-label="3 / 5" style="width: 348.955px; margin-right: 24px;">
+                                    <a href="/news/669" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <div class="card-visual__wrapper">
+                                            <div class="card__labels">
+                                                <span class="card__label">기술</span>
+                                            </div>
+                                            <div class="card__img-box">
+                                                <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                                <img class="swiper-lazy swiper-lazy-loaded" draggable="false" src="/connect/img/placeholder.png" alt="NHN클라우드, 메시지 서비스 운영·관리 통합 플랫폼 ‘Notification Hub’ 출시" srcset="/ko_/pr/boardImage/2024/202411110851411.png">
+                                            </div>
+                                        </div>
+                                        <div class="card-content__wrapper">
+                                            <strong class="card__tit">NHN클라우드, 메시지 서비스 운영·관리 통합 플랫폼 ‘Notification Hub’ 출시</strong>
+                                            <span class="card__desc"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card swiper-slide" role="group" aria-label="4 / 5" style="width: 348.955px; margin-right: 24px;">
+                                    <a href="/news/668" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <div class="card-visual__wrapper">
+                                            <div class="card__labels">
+                                                <span class="card__label">기술</span>
+                                            </div>
+                                            <div class="card__img-box">
+                                                <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                                <img class="swiper-lazy swiper-lazy-loaded" draggable="false" src="/connect/img/placeholder.png" alt="NHN엔터프라이즈, 서울대학교와 클라우드 컴퓨팅 서비스 활성화를 위한 업무협약 체결" srcset="/ko_/pr/boardImage/2024/202411050858221.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="card-content__wrapper">
+                                            <strong class="card__tit">NHN엔터프라이즈, 서울대학교와 클라우드 컴퓨팅 서비스 활성화를 위한 업무협약 체결</strong>
+                                            <span class="card__desc"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card swiper-slide" role="group" aria-label="5 / 5" style="width: 348.955px; margin-right: 24px;">
+                                    <a href="/news/667" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+                                        <div class="card-visual__wrapper">
+                                            <div class="card__labels">
+                                                <span class="card__label">기업</span>
+                                            </div>
+                                            <div class="card__img-box">
+                                                <!-- [D] swiper slide내 이미지 lazy loading시 img에 data-srcset 이미지 추가 -->
+                                                <img class="swiper-lazy" draggable="false" src="/connect/img/placeholder.png" data-srcset="/ko_/pr/boardImage/2024/202411040909421.jpg" alt="NHN, 통합 상담 솔루션 ‘Contiple’로 리브랜딩… ">
+                                            </div>
+                                        </div>
+                                        <div class="card-content__wrapper">
+                                            <strong class="card__tit">NHN, 통합 상담 솔루션 ‘Contiple’로 리브랜딩… "Contiple로 컨택센터 간편하게 구축하세요!"</strong>
+                                            <span class="card__desc"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div>   
+                    </div>
+                </section>
+                <!-- // [D] 최근 뉴스  -->
+            </div>
+        </main>
+        <div class="main-footer" style="height: 584px;">
+            <div class="main-footer__fixed">
+                <div class="main-footer__box">
+                    <h2 class="main-footer__tit">
+                        "Start your PLAY,"
+                        <br class="d-block--sm-only">
+                        "NHN"
+                    </h2>
+                    <a href="https://careers.nhn.com/" target="_blank" class="button__text-icon--md icon__outlink--white hover__underline--white">
+                        "지원하러 가기"
+                        ::after
+                    </a>
+                    <div class="main-footer__visual">
+                        <!-- [D] 3배수 적용: 낮은 dpi 모니터에서 곡선 구현이 일부 제대로 적용되지 않는 부분 개선 -->
+                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="2481" height="786" viewBox="0 0 2481 786">
+                            <path data-img-name="rounded_square" d="M 1542.567 522.129 L 1386.612 442.779 C 1363.227 430.878 1334.619 440.199 1322.715 463.593 L 1243.383 619.515 C 1231.479 642.909 1240.788 671.52 1264.173 683.421 L 1420.128 762.771 C 1443.513 774.669 1472.121 765.351 1484.025 741.954 L 1563.357 586.032 C 1575.261 562.638 1565.955 534.027 1542.567 522.129 Z" fill="#21BEE8" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="triangle" d="M 293.4528 399.684 L 215.5503 788.652 L 681.567 481.743 L 293.4528 399.684 Z" fill="#C99681" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="triangle_sm" d="M 2285.448 596.733 L 2090.448 788.733 L 2480.448 788.733 L 2285.448 596.733 Z" fill="#C99681" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="circular_sector" d="M 934.242 498.393 C 933.927 498.324 933.63 498.258 933.315 498.189 L 990.753 235.9644 C 991.065 236.0331 991.365 236.0985 991.677 236.1672 C 1054.278 249.8787 1118.463 238.4577 1172.4 203.9991 C 1226.34 169.5405 1263.579 116.1777 1277.259 53.7318 C 1277.418 53.0058 1277.565 52.2624 1277.709 51.5334 L 1540.596 109.1142 C 1540.437 109.8402 1540.308 110.5725 1540.146 111.3126 C 1480.146 385.239 1208.871 558.546 934.242 498.393 Z" fill="#79D8C5" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="rectangle" d="M 1223.166 530.277 H 704.562 V 788.277 H 1223.166 V 530.277 Z" fill="#164072" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="donut" d="M 1699.506 221.6538 C 1771.965 221.6538 1830.906 280.596 1830.906 353.055 C 1830.906 425.511 1771.965 484.455 1699.506 484.455 C 1627.047 484.455 1568.106 425.511 1568.106 353.055 C 1568.106 280.596 1627.047 221.6538 1699.506 221.6538 Z M 1699.506 134.0538 C 1578.555 134.0538 1480.506 232.1031 1480.506 353.055 C 1480.506 474.003 1578.555 572.055 1699.506 572.055 C 1820.457 572.055 1918.506 474.003 1918.506 353.055 C 1918.506 232.1031 1820.457 134.0538 1698 134 Z" fill="#FC5442" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="circle_sm" d="M 446.562 789.237 C 481.353 789.237 509.562 761.031 509.562 726.237 C 509.562 691.443 481.353 663.237 446.562 663.237 C 411.768 663.237 383.562 691.443 383.562 726.237 C 383.562 761.031 411.768 789.237 446.562 789.237 Z" fill="#FC5442" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="circle" d="M 1601.052 787.644 C 1644.129 787.644 1679.052 752.721 1679.052 709.644 C 1679.052 666.564 1644.129 631.644 1601.052 631.644 C 1557.972 631.644 1523.052 666.564 1523.052 709.644 C 1523.052 752.721 1557.972 787.644 1601.052 787.644 Z" fill="#21BEE8" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="semicircle" d="M 2166.015 211.8624 L 1690.839 687.039 C 1822.668 818.865 2034.798 818.253 2166.015 687.039 C 2297.232 555.822 2297.844 343.689 2166.015 211.8624 Z" fill="#164072" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="octagon" d="M 22.0168 689.805 L 53.1486 760.275 L 124.9983 788.094 L 195.4665 756.96 L 223.2855 685.113 L 192.1539 614.643 L 120.3039 586.824 L 49.8357 617.955 L 22.0168 689.805 Z" fill="#21BEE8" style="mix-blend-mode:multiply"></path>
+                            <path data-img-name="clover" d="M 855.138 401.973 C 848.535 377.331 824.454 362.058 799.875 365.979 C 791.421 341.865 765.747 327.945 740.733 334.647 C 715.722 341.349 700.425 366.246 705.189 391.374 C 682.041 400.314 668.907 425.517 675.495 450.108 C 682.086 474.699 706.044 489.939 730.545 486.126 C 740.019 508.35 764.571 520.821 788.514 514.404 C 812.46 507.99 827.457 484.974 824.589 461.013 C 848.268 452.37 861.825 426.846 855.156 401.958 L 855.138 401.973 Z" fill="#21BEE8" style="mix-blend-mode:multiply"></path>
+                        </svg>
+                        <canvas width="3112" height="1500" data-pixel-ratio="3.75" style="width: 830px; height: 400px; background:  0% 0% / contain transparent;"></canvas>
+                    </div>
+                    ::after
+                </div>
+                <footer class="footer">
+                    <script>
+                        function openProposalPopup() {
+                            window.open(
+                                'https://nhn.com/proposal',
+                                '제휴 제안',
+                                'width=800,height=840,left=100,top=100,resizable=yes,scrollbars=yes,menubar=no,toolbar=no'
+                            )
+                        }
+                    </script>
+                    <div class="footer__inner">
+                        <ul class="footer-link__list">
+                            <li class="footer-link__item">
+                                <a href="javascript:void(0)" onclick="loadContent('/company')">회사소개</a>
+                            </li>
+                            <li class="footer-link__item d-none--md">
+                                <a href="https://www.nhn.com/ko-KR/services?tab=game" target="_blank">전체서비스</a>
+                            </li>
+                            <li class="footer-link__item">
+                                <a href="https://careers.nhn.com/" target="_blank">인재채용</a>
+                            </li>
+                            <li class="footer-link__item d-none--md">
+                                <a href="javascript:void(0)" onclick="openProposalPopup()">제휴제안</a>
+                            </li>
+                        </ul>
+                        <p class="footer-copyright">©NHN Corp. All rights reserved.</p>
+                        <div class="footer-outer-links">
+                            <div class="footer-site-boxes">
+                                <div class="footer-site-box">
+                                    <button type="button" class="button__footer-more">
+                                        "국내법인"
+                                        <i class="button__icon-only--lg icon__footer-more--black"></i>
+                                    </button>
+                                    <div class="footer-site" data-name="국내법인">
+                                        <ul class="footer-site__list">
+                                            <li class="footer-site__item">
+                                                <a href="https://company.payco.com" target="_blank">NHN PAYCO</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.kcp.co.kr" target="_blank">NHN KCP</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnad.com" target="_blank">NHN AD</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://nhnace.com" target="_blank">NHN ACE</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhn-commerce.com" target="_blank">NHN COMMERCE</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnwetoo.com" target="_blank">NHN WETOO</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnfashiongo.com" target="_blank">NHN FASHIONGO KOREA</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://company.nhncloud.com" target="_blank">NHN Cloud</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://dooray.com" target="_blank">NHN DOORAY</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://nhndata.com" target="_blank">NHN DATA</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnenterprise.com" target="_blank">NHN ENTERPRISE</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.injeinc.co.kr" target="_blank">NHN INJEINC</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://crossent.com" target="_blank">NHN CROSSENT</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://nhnacademy.github.io" target="_blank">NHN ACADEMY</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.ticketlink.co.kr" target="_blank">NHN LINK</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.bugscorp.co.kr" target="_blank">NHN Bugs</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.comico.kr" target="_blank">NHN comico Korea</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://corp.drtour.com" target="_blank">NHN DOCTORTOUR</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnedu.com" target="_blank">NHN EDU</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnservice.com" target="_blank">NHN SERVICE</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.wisdomhouse.co.kr" target="_blank">WISDOM HOUSE</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.doppelsoft.net" target="_blank">DOPPELSOFT</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="footer-site-box">
+                                    <button type="button" class="button__footer-more">
+                                        "해외법인"
+                                        <i class="button__icon-only--lg icon__footer-more--black"></i>
+                                    </button>
+                                    <div class="footer-site" data-name="해외법인">
+                                        <ul class="footer-site__list">
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhn-japan.com/" target="_blank">NHN JAPAN</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhn-playart.com/" target="_blank">NHN PlayArt</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://nhn-techorus.com/" target="_blank">NHN TECHORUS</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhn-comico.com/" target="_blank">NHN comico</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.nhnglobal.com/usa/index.nhn" target="_blank">NHN GLOBAL</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="http://www.accommate.com/" target="_blank">IBT</a>
+                                            </li>
+                                            <li class="footer-site__item">
+                                                <a href="https://www.coltortiboutique.com/" target="_blank">IKONIC</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-sns">
+                                <a href="https://www.nhn.com" class="button__icon-only--xxlg icon__home--white" target="_blank">NHN 기업 홈페이지 바로가기</a>
+                                <a href="https://www.youtube.com/channel/UCMEfq7bqJwujrM5oEEhhmYw" class="button__icon-only--xxlg icon__youtube--white" target="_blank">NHN 유튜브 바로가기</a>
+                                <a href="https://www.instagram.com/nhn_corp/" class="button__icon-only--xxlg icon__instagram--white" target="_blank">NHN 인스타그램 바로가기</a>
+                                <a href="https://www.linkedin.com/company/nhncorp/mycompany/" class="button__icon-only--xxlg icon__linkedin--white" target="_blank">NHN 링크드인 바로가기</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>  
